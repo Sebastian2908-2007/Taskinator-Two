@@ -1,5 +1,7 @@
 var formEl = document.querySelector("#task-form");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
+var taskInProgress = document.querySelector("#tasks-in-progress");
+var taskComplete = document.querySelector("#tasks-completed");
 var taskIdCounter = 0;
 var pageContentEl = document.querySelector("#page-content");
 var tasksInProgressEl = document.querySelector("#tasks-in-progress");
@@ -39,7 +41,7 @@ createTaskEl(taskDataObj);
 };
 
 var createTaskEl = function(taskDataObj) {
-    
+    console.log(taskDataObj);
 // create list item
 var listItemEl = document.createElement("li");
 listItemEl.className = "task-item" ;
@@ -65,9 +67,17 @@ var taskActionsEl = createTaskActions(taskIdCounter);
 
 listItemEl.appendChild(taskActionsEl);
 
-// add entire list item to the list
-tasksToDoEl.appendChild(listItemEl);
 
+
+// add entire list item to the list
+if (taskDataObj.status === 'to do'){
+    console.log("fuck you");
+    tasksToDoEl.appendChild(listItemEl);
+} else if (taskDataObj.status === "in progress") {
+    taskInProgress.appendChild(listItemEl);
+} else if (taskDataObj.status === "completed") {
+    taskComplete.appendChild(listItemEl);
+}
 // increase the counter for the next unique id
 taskIdCounter++;
 
@@ -204,6 +214,7 @@ var loadTasks = function() {
     }
 
     savedTasks = JSON.parse(savedTasks);
+   // console.log(savedTasks);
   for(var i = 0; i < savedTasks.length; i++) {
       // pass each task object into the createTaskEl() function
       createTaskEl(savedTasks[i]);
@@ -225,12 +236,15 @@ var taskStatusChangeHandler = function(event) {
 
  if (statusValue === "to do") {
      tasksToDoEl.appendChild(taskSelected);
+     console.log("shit");
  }
  else if (statusValue === "in progress") {
      tasksInProgressEl.appendChild(taskSelected);
+     console.log("progress");
  }
  else if (statusValue === "completed") {
      tasksCompletedEl.appendChild(taskSelected);
+     console.log("complete");
  }
  // update task's in task array
  for (var i =0; i < tasks.length; i++) {
