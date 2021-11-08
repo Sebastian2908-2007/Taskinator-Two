@@ -59,6 +59,7 @@ taskDataObj.id = taskIdCounter;
 
 // push the task data object into our tasks array
 tasks.push(taskDataObj);
+saveTasks();
 
 var taskActionsEl = createTaskActions(taskIdCounter);
 
@@ -149,6 +150,7 @@ var deleteTask = function(taskId) {
   }
   // reassign tasks array to be the same as updatedTaskArray
   tasks = updatedTaskArray;
+  saveTasks();
   
 };
 
@@ -184,6 +186,7 @@ for(var i = 0; i < tasks.length; i++) {
         tasks[i].type = taskType;
     }
 };
+saveTasks();
 
     alert("tassk now complete");
 
@@ -218,7 +221,11 @@ var taskStatusChangeHandler = function(event) {
          tasks[i].status = statusValue;
      }
  }
- console.log(tasks);
+ saveTasks();
+};
+
+var saveTasks = function() {
+localStorage.setItem("tasks", JSON.stringify(tasks));
 };
 
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
