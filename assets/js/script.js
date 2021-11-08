@@ -71,11 +71,13 @@ listItemEl.appendChild(taskActionsEl);
 
 // add entire list item to the list
 if (taskDataObj.status === 'to do'){
-    console.log("fuck you");
+    listItemEl.querySelector("select[name='status-change']").selectedIndex = 0;
     tasksToDoEl.appendChild(listItemEl);
 } else if (taskDataObj.status === "in progress") {
+    listItemEl.querySelector("select[name='status-change']").selectedIndex = 1
     taskInProgress.appendChild(listItemEl);
 } else if (taskDataObj.status === "completed") {
+    listItemEl.querySelector("select[name='status-change']").selectedIndex = 2
     taskComplete.appendChild(listItemEl);
 }
 // increase the counter for the next unique id
