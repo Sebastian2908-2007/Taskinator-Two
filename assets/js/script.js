@@ -238,15 +238,15 @@ var taskStatusChangeHandler = function(event) {
 
  if (statusValue === "to do") {
      tasksToDoEl.appendChild(taskSelected);
-     console.log("shit");
+     
  }
  else if (statusValue === "in progress") {
      tasksInProgressEl.appendChild(taskSelected);
-     console.log("progress");
+   
  }
  else if (statusValue === "completed") {
      tasksCompletedEl.appendChild(taskSelected);
-     console.log("complete");
+     
  }
  // update task's in task array
  for (var i =0; i < tasks.length; i++) {
